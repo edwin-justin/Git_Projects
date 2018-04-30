@@ -54,10 +54,13 @@ namespace MortgageCalculator.UnitTests
         {
             HomeController homeController = new HomeController();
             // Test 1
-            string repaymentSummary = homeController.GetRepaymentSummary(10000, (decimal)2.50, 5);
+            string repaymentSummary = homeController.GetRepaymentSummary(1000, (decimal)4.0, 1);
             
             // Test 2
             repaymentSummary = homeController.GetRepaymentSummary(270580, (decimal)3.25, 10);
+
+            // Test 3
+            repaymentSummary = homeController.GetRepaymentSummary(450000, (decimal)3.75, 20);
         }
     }
 }

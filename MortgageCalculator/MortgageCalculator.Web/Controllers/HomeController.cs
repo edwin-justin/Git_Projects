@@ -39,16 +39,13 @@ namespace MortgageCalculator.Web.Controllers
 
         }
 
-        public string GetRepaymentSummary(int principal, decimal rateOfInterest, int years)
+        public string GetRepaymentSummary(int principal, decimal interest, int years)
         {
-            double rate = Convert.ToDouble(((rateOfInterest / (years * 12)) / 100));
-            double factor = (rate + (rate / (Math.Pow(rate + 1, (years * 12)) - 1)));
-            double payment = (principal * factor);
+            // rate of interest and number of payments for monthly payments
+            var interestAmt = principal * (interest / 100) * years;
+            var paymentAmount = principal + interestAmt;
 
-            decimal totalPayment = (decimal)Math.Round(payment * years * 12, 2);
-            decimal totalInterest = totalPayment - principal;
-
-            return ($"Your total Repayment Amount would be ${totalPayment} and your Total Interest amount is ${totalInterest}.");
+            return ($"Your total Repayment Amount would be ${decimal.Round(paymentAmount,2)} and your Total Interest amount is ${decimal.Round(interestAmt, 2)}.");
         }
     }
 }
