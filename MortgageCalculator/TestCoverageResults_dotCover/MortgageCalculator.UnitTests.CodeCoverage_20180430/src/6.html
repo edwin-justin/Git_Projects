@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\projects\mortgagecalculator\mortgagecalculator\mortgagecalculator.dto\mortgage.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+
+namespace MortgageCalculator.Dto
+{
+    public class Mortgage
+    {
+        public int MortgageId { get; set; }
+        public string Name { get; set; }
+        public MortgageType MortgageType { get; set; }
+        public InterestRepayment InterestRepayment { get; set; }
+        public DateTime EffectiveStartDate { get; set; }
+        public DateTime EffectiveEndDate { get; set; }
+        public decimal CancellationFee { get; set; }
+        public decimal EstablishmentFee { get; set; }
+        public Guid SchemaIdentifier { get; internal set; }
+        public decimal InterestRate { get; set; }
+    }
+
+    public enum MortgageType
+    {
+        Variable = 0,
+        Fixed = 1
+    }
+
+    public enum InterestRepayment
+    {
+        InterestOnly,
+        PrincipalAndInterest
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[7,33,7,37,1],[7,38,7,42,1],[8,30,8,34,1],[8,35,8,39,1],[9,44,9,48,1],[9,49,9,53,1],[10,54,10,58,1],[10,59,10,63,1],[11,46,11,50,1],[11,51,11,55,1],[12,44,12,48,1],[12,49,12,53,1],[13,42,13,46,0],[13,47,13,51,1],[14,43,14,47,1],[14,48,14,52,1],[15,40,15,44,0],[15,45,15,58,0],[16,39,16,43,1],[16,44,16,48,1]]);
+    </script>
+  </body>
+</html>

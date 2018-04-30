@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\projects\mortgagecalculator\mortgagecalculator\mortgagecalculator.api\controllers\mortgagecontroller.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
+using MortgageCalculator.Api.Services;
+using MortgageCalculator.Dto;
+
+namespace MortgageCalculator.Api.Controllers
+{
+    public class MortgageController : ApiController
+    {
+        // GET: api/Mortgage
+        [HttpGet]
+        [Route(&quot;api/Mortgage&quot;)]
+        public IEnumerable&lt;Mortgage&gt; Get()
+        {
+           var mortgageService = new MortgageService();
+           return mortgageService.GetAllMortgages();
+        }
+
+        // GET: api/Mortgage/5
+        [HttpGet]
+        [Route(&quot;api/Mortgage/{id}&quot;)]
+        public Mortgage Get(int id)
+        {
+            var mortgageService = new MortgageService();
+            return mortgageService.GetAllMortgages().FirstOrDefault(x =&gt; x.MortgageId == id);
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[15,9,15,10,1],[16,12,16,56,1],[17,12,17,53,1],[18,9,18,10,1],[24,9,24,10,1],[25,13,25,57,1],[26,13,26,74,1],[26,74,26,92,1],[26,92,26,94,1],[26,13,26,94,1],[27,9,27,10,1]]);
+    </script>
+  </body>
+</html>

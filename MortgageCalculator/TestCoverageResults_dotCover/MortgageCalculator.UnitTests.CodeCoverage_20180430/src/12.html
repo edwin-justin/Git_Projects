@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\projects\mortgagecalculator\mortgagecalculator\mortgagecalculator.web\models\loancalculator.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using MortgageCalculator.Dto;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.ComponentModel.DataAnnotations;
+
+namespace MortgageCalculator.Web.Models
+{
+    public class LoanCalculator
+    {
+        public int BorrowedAmount { get; set; }
+
+        public int Years { get; set; }
+
+        public MortgageType MortgageType { get; set; }
+
+        public decimal Rate
+        {
+            get;
+            set;
+        }
+            
+        public string RepaymentSummary { get; internal set; }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[12,37,12,41,1],[12,42,12,46,1],[14,28,14,32,1],[14,33,14,37,1],[16,44,16,48,0],[16,49,16,53,0],[20,13,20,17,1],[21,13,21,17,1],[24,42,24,46,1],[24,47,24,60,1]]);
+    </script>
+  </body>
+</html>

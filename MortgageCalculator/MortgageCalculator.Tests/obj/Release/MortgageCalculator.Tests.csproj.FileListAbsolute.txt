@@ -1,0 +1,13 @@
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\bin\Release\MortgageCalculator.Tests.dll
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\bin\Release\MortgageCalculator.Tests.pdb
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\obj\Release\MortgageCalculator.Tests.csproj.CoreCompileInputs.cache
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\obj\Release\MortgageCalculator.Tests.csproj.CopyComplete
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\obj\Release\MortgageCalculator.Tests.dll
+D:\Projects\MortgageCalculator\MortgageCalculator\MortgageCalculator.Tests\obj\Release\MortgageCalculator.Tests.pdb

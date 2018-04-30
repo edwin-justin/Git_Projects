@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\projects\mortgagecalculator\mortgagecalculator\mortgagecalculator.api\app_start\webapiconfig.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
+using System.Web.Http.Cors;
+
+namespace MortgageCalculator.Api
+{
+    public static class WebApiConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+            config.EnableCors(new EnableCorsAttribute(&quot;*&quot;, &quot;*&quot;, &quot;*&quot;));
+
+            // Web API configuration and services
+
+            // Web API routes
+            config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: &quot;DefaultApi&quot;,
+                routeTemplate: &quot;api/{controller}/{action}/{id}&quot;,
+                defaults: new { id = RouteParameter.Optional }
+            );
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[12,9,12,10,1],[13,13,13,71,1],[18,13,18,45,1],[20,13,24,15,1],[25,9,25,10,1]]);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\projects\mortgagecalculator\mortgagecalculator\mortgagecalculator.unittests\mortgagerepotests.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Text;
+using NUnit.Framework;
+using MortgageCalculator.Api.Repos;
+using MortgageCalculator.Dto;
+using System.Collections.Generic;
+
+namespace MortgageCalculator.UnitTests
+{
+    [TestFixture]
+    public class MortgageRepoTests
+    {
+        private readonly IMortgageRepo _mortgageRepo;
+
+        public MortgageRepoTests()
+        {
+            _mortgageRepo = new MortgageRepo();
+        }
+        
+        [TestCase]
+        public void Verify_GetAllMortgages_Repository()
+        {
+            List&lt;Mortgage&gt; mortgages = _mortgageRepo.GetAllMortgages();
+            Assert.IsNotNull(mortgages);
+            Assert.IsTrue(mortgages.Count &gt; 0);
+        }
+    }
+}
+
+
+
+
+
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[14,9,14,35,1],[15,9,15,10,1],[16,13,16,48,1],[17,9,17,10,1],[21,9,21,10,1],[22,13,22,72,1],[23,13,23,41,1],[24,13,24,48,1],[25,9,25,10,1]]);
+    </script>
+  </body>
+</html>

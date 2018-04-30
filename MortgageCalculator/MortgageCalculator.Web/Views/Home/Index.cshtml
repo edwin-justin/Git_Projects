@@ -1,0 +1,214 @@
+﻿@model MortgageCalculator.Web.Models.LoanCalculator
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Mortgage Calculator</h1>
+    <p class="lead">
+        The Mortgage Calculator helps you:
+        <ul>
+            <li>Choose the right loan for you</li>
+            <li>The Interests and Repayment on your loan</li>
+        </ul>
+    </p>
+</div>
+
+<style>
+    .cbabtn {
+        background: #34d968;
+        box-shadow: 4px 3px 3px #666666;
+        font-family: Arial;
+        color: #000000;
+        font-size: 22px;
+        padding: 10px 20px 10px 12px;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .cbabtn:hover {
+        background: #3cb0fd;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>Calculator</legend>
+                    <div class="form-group">
+                        <div class="col-md-4 control-label">
+                            @Html.LabelFor(model => model.BorrowedAmount, "Borrowed Amount")
+                        </div>
+                        <div class="col-md-offset-5 input-md">
+                            @Html.TextBoxFor(model => model.BorrowedAmount, new { @id = "TextBorrowedAmt" })
+                            <span class="help-block">Enter the amount to borrow</span>
+                            <span class="has-error" id="textAmountErrorText" style="visibility:hidden;color:red">Amount to borrow is required.</span>
+                        </div>
+                        <br />
+
+                        <div class="col-md-4 control-label ">
+                            @Html.LabelFor(model => model.Years, "Number of Years")
+                        </div>
+                        <div class="col-md-offset-5 input-md">
+                            @Html.TextBoxFor(model => model.Years, new { @id = "TextYears" })
+                            <span class="help-block">Enter number of years</span>
+                            <span class="has-error" id="textYearsErrorText" style="visibility:hidden;color:red">Number of years is required.</span>
+                        </div>
+                        <br />
+
+                        <div class="col-md-4 control-label">
+                            @Html.LabelFor(model => model.Rate, "Interest Rate")
+                        </div>
+                        <div class="col-md-offset-5 input-md">
+                            @Html.TextBoxFor(model => model.Rate, "", new { @disabled = "disabled", @id = "TextInterestRate" })
+                        </div>
+                        <br />
+
+                        <div class="col-md-4 control-label">
+                            @Html.LabelFor(model => model.MortgageType, "Mortgage Type")
+                        </div>
+                        <div class="col-md-offset-5 input-md">
+                            <select class="form-control" id="ddlMortgageTypes" name="ddlMortgageTypes" onchange="fillInterestRate();"></select>
+                            <span class="help-block">Select Mortgate Type</span>
+                        </div>
+                        <br />
+                        <br />
+
+                        <p>
+                            <input value="Calculate" id="Calculate" class="cbabtn" onclick="calculateRepayment();" />
+                        </p>
+
+                        <div id="RepaymentSummary" class="jumbotron">
+                            @Html.LabelFor(model => model.RepaymentSummary, "Repayment Summary: ")
+                            <br />
+                            <hr />
+                            <label id="labelRepaymentSummary" class="control-label input-md">@Html.DisplayFor(item => item.RepaymentSummary)</label>
+                            <hr />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            @*<div id="RepaymentSummary" class="jumbotron">
+                    <hr />
+                    @Html.LabelFor(model => model.RepaymentSummary, "Repayment Summary")
+                    <hr />
+                </div>*@
+        </div>
+    </div>
+
+
+}
+
+<script type="text/javascript">
+    $.support.cors = true;
+    var mortgages = null;
+    var ulMortgageTypes = $("#ddlMortgageTypes");
+
+    $(document).ready(function () {
+
+        if (mortgages != null) {
+            fillMortgageTypes(mortgages);
+        }
+        else {
+            $.ajax({
+                url: 'http://localhost:49608/api/Mortgage',
+                dataType: 'json',
+                headers: {
+                    'Cache-Control': 'max-age=86400'
+                },
+                success: function (data) {
+                    ulMortgageTypes.empty();
+                    fillMortgageTypes(data);
+                    mortgages = data;
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('<p>Status code: ' + jqXHR.status + '</p><p>ErrorThrown: ' + errorThrown + '</p><p>ResponseText:</p><div>' + jqXHR.responseText + '</div>');
+                }
+            });
+        }
+
+        $("#TextBorrowedAmt").change(function() { validate(); });
+        $("#TextYears").change(function () { validate(); });
+
+    });
+
+    function fillMortgageTypes(data) {
+        $.each(data, function (index, val) {
+            ulMortgageTypes.append('<option value=' + val.InterestRate.toString() + '>' + val.Name + '</option>')
+        });
+    }
+
+    function fillInterestRate() {
+        var interestRate = $("#ddlMortgageTypes :selected").val();
+        
+        if (interestRate) {
+            $("#TextInterestRate").val(interestRate);
+            $("#TextInterestRate").change();
+        }
+    }
+
+    function calculateRepayment() {
+        if (validate()) {
+            var interestRate = $("#ddlMortgageTypes :selected").val();
+
+            var calculationData = {
+                borrowedAmount: $("#TextBorrowedAmt").val(),
+                years: $("#TextYears").val(),
+                rate: $("#TextInterestRate").val()
+            };
+
+            $.ajax({
+                url: "/Home/CalculateRepayment",
+                data: JSON.stringify(calculationData),
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success:
+                    function (data) {
+                        if (data) {
+                            $("#labelRepaymentSummary").text(data.RepaymentSummary);
+                            $("#TextBorrowedAmt").val(data.BorrowedAmount);
+                            $("#TextYears").val(data.Years);
+                            $("#ddlMortgageTypes").val(interestRate);
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('<p>Status code: ' + jqXHR.status + '</p><p>ErrorThrown: ' + errorThrown + '</p><p>ResponseText:</p><div>' + jqXHR.responseText + '</div>');
+                }
+            });
+        }
+    }
+
+    function validate() {
+        var result = false;
+
+        if ($("#TextBorrowedAmt").val() == "") {
+            setElementVisibility("textAmountErrorText", true);
+        }
+        else {
+            setElementVisibility("textAmountErrorText", false);
+            result = true;
+        }
+
+        if ($("#TextYears").val() == "") {
+            setElementVisibility("textYearsErrorText", true);
+        }
+        else {
+            setElementVisibility("textYearsErrorText", false);
+            result = true;
+        }
+
+        return result;
+    }
+
+    function setElementVisibility(elementId, isVisible) {
+        $("#" + elementId).css("visibility", (isVisible ? "visible" : "hidden"));
+    }
+</script>

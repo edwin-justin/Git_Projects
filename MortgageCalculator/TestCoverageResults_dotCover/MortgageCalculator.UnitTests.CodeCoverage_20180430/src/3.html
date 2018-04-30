@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\projects\mortgagecalculator\mortgagecalculator\mortgagecalculator.api\services\mortgageservice.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+using MortgageCalculator.Api.Repos;
+using MortgageCalculator.Dto;
+
+namespace MortgageCalculator.Api.Services
+{
+    public interface IMortgageService
+    {
+        List&lt;Mortgage&gt; GetAllMortgages();
+    }
+
+    public class MortgageService : IMortgageService
+    {
+
+        private readonly IMortgageRepo _mortgageRepo;
+        public MortgageService() : this(new MortgageRepo())
+        { }
+
+        public MortgageService(IMortgageRepo mortgageRepo)
+        {
+            this._mortgageRepo = mortgageRepo;
+        }
+
+        public List&lt;Mortgage&gt; GetAllMortgages()
+        {
+            return _mortgageRepo.GetAllMortgages();
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[16,36,16,60,1],[17,9,17,10,1],[17,11,17,12,1],[19,9,19,59,1],[20,9,20,10,1],[21,13,21,47,1],[22,9,22,10,1],[25,9,25,10,1],[26,13,26,52,1],[27,9,27,10,1]]);
+    </script>
+  </body>
+</html>
