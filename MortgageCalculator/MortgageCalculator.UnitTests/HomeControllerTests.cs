@@ -50,17 +50,20 @@ namespace MortgageCalculator.UnitTests
         }
 
         [TestCase]
-        public void Verify_RepaymentCalculationTest()
+         public void Verify_RepaymentCalculationTest()
         {
             HomeController homeController = new HomeController();
             // Test 1
             string repaymentSummary = homeController.GetRepaymentSummary(1000, (decimal)4.0, 1);
-            
+            Assert.AreEqual(repaymentSummary.Trim(), "Your total Repayment Amount would be $1040.00 and your Total Interest amount is $40.00.");
+
             // Test 2
             repaymentSummary = homeController.GetRepaymentSummary(270580, (decimal)3.25, 10);
+            Assert.AreEqual(repaymentSummary.Trim(), "Your total Repayment Amount would be $358518.50 and your Total Interest amount is $87938.50.");
 
             // Test 3
             repaymentSummary = homeController.GetRepaymentSummary(450000, (decimal)3.75, 20);
+            Assert.AreEqual(repaymentSummary.Trim(), "Your total Repayment Amount would be $787500.00 and your Total Interest amount is $337500.00.");
         }
     }
 }

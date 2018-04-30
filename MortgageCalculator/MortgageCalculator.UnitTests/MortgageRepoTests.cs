@@ -22,6 +22,19 @@ namespace MortgageCalculator.UnitTests
             List<Mortgage> mortgages = _mortgageRepo.GetAllMortgages();
             Assert.IsNotNull(mortgages);
             Assert.IsTrue(mortgages.Count > 0);
+
+            // Test Mortgage Sorting Logic
+            var firstMortgage = mortgages.First();
+            Assert.AreEqual(firstMortgage.MortgageType,MortgageType.Variable);
+
+            var variableMortgages = mortgages.Where(mt => mt.MortgageType == MortgageType.Variable).ToList();
+            Assert.Less(variableMortgages.First<Mortgage>().InterestRate, variableMortgages.Last<Mortgage>().InterestRate);
+
+            var lastMortgage = mortgages.Last();
+            Assert.AreEqual(lastMortgage.MortgageType, MortgageType.Fixed);
+
+            var fixedMortgages = mortgages.Where(mt => mt.MortgageType == MortgageType.Fixed).ToList();
+            Assert.Less(fixedMortgages.First<Mortgage>().InterestRate, fixedMortgages.Last<Mortgage>().InterestRate);
         }
     }
 }
